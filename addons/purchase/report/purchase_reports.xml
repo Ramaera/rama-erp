@@ -13,7 +13,6 @@
             <field name="binding_model_id" ref="model_purchase_order"/>
             <field name="binding_type">report</field>
         </record>
-
         <record id="report_purchase_quotation" model="ir.actions.report">
             <field name="name">Request for Quotation</field>
             <field name="model">purchase.order</field>

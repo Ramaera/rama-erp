@@ -4,6 +4,7 @@
     <t t-call="web.external_layout">
         <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
         <t t-set="address">
+
             <div t-field="o.partner_id"
                  t-options='{"widget": "contact", "fields": ["address", "name", "phone", "vat"], "no_marker": True, "phone_icons": True}'/>
         </t>
@@ -12,7 +13,7 @@
                 <strong>Shipping address</strong>
                 <div t-if="o.dest_address_id">
                     <div t-field="o.dest_address_id"
-                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}' name="purchase_shipping_address"/>
+                        t-options='{"widget": "contact", "fields": ["address", "name", "phone","vat"], "no_marker": True, "phone_icons": True}' name="purchase_shipping_address"/>
                 </div>
 
             </t>
@@ -27,10 +28,7 @@
             </div>
 
             <div id="informations" class="row mt-4 mb32">
-                <div t-if="o.user_id" class="col-3 bm-2">
-                    <strong>Purchase Representative:</strong>
-                    <p t-field="o.user_id" class="m-0"/>
-                </div>
+
                 <div t-if="o.partner_ref" class="col-3 bm-2">
                     <strong>Your Order Reference:</strong>
                     <p t-field="o.partner_ref" class="m-0"/>

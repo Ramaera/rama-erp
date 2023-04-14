@@ -19,7 +19,7 @@
     ],
     'demo': [],
     'installable': True,
-    'application': False,
+    'application': True,
     # 'assets': {
     #     # 'web.assets_backend': [
     #     #     'purchase/static/src/toaster_button/*',
