@@ -9,15 +9,6 @@
                 Place of supply: <span t-esc="o.l10n_in_state_id.name"/>
             </t>
         </xpath>
-        <xpath expr="//div[@t-if='not is_html_empty(o.narration)']" position="before">
-            <t t-if="o.company_id.account_fiscal_country_id.code == 'IN'">
-                <p id="total_in_words" class="mb16">
-                    <strong>Total (In Words): </strong>
-                    <span t-field="o.amount_total_words"/>
-                </p>
-            </t>
-        </xpath>
-
         <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="after">
             <t t-if="o.company_id.account_fiscal_country_id.code == 'IN'">
                 <th>HSN/SAC</th>
@@ -41,7 +32,6 @@
                 <span t-field="o.name"/>
             </h2>
         </xpath>
-
     </template>
 
 </odoo>

@@ -8,9 +8,11 @@
     'sequence': -100,
     'summary': 'Purchase orders, tenders and agreements',
     'website': 'https://www.odoo.com/app/purchase',
-    'depends': ['base','purchase'],
+    'depends': ['base','purchase','account_tax_python'],
     'data': [
-        'report/purchase.report_inherit.xml'
+        'report/purchase.report_inherit.xml',
+        'report/account.invoice_account_report_inherit.xml'
+
         #
         # 'data/purchase_data.xml',
         # 'data/ir_cron_data.xml',

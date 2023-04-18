@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="invoice_account_report_inherit" inherit_id="account.report_invoice_document">
+        <xpath expr="//thead" position="replace">
+              <thead>
+                                <tr>
+                                    <th name="th_product" class="text-start"><span>Product</span></th>
+                                    <th name="th_description" class="text-start"><span>Description</span></th>
+                                    <th name="th_quantity" class="text-end"><span>HSN/SAC</span></th>
+                                    <th name="th_quantity" class="text-end"><span>Quantity</span></th>
+                                    <th name="th_priceunit" t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Unit Price</span></th>
+                                    <th name="th_price_unit" t-if="display_discount" t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                        <span>Disc.%</span>
+                                    </th>
+                                    <th name="th_taxes" t-attf-class="text-start {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Taxes</span></th>
+                                    <th name="th_subtotal" class="text-end">
+                                        <span groups="account.group_show_line_subtotals_tax_excluded">Amount</span>
+                                        <span groups="account.group_show_line_subtotals_tax_included">Total Price</span>
+                                    </th>
+                                </tr>
+                            </thead>
+        </xpath>
+
+
+        <xpath expr="//t[@name='account_invoice_line_accountable']" position="replace">
+            <t t-if="line.display_type == 'product'" name="account_invoice_line_accountable">
+                <td id="productid">
+                        <span t-field="line.product_id"/>
+                    </td>
+                <td name="account_invoice_line_name"><span t-field="line.name" t-options="{'widget': 'text'}"/></td>
+                <td t-if="o.company_id.account_fiscal_country_id.code == 'IN'">
+              <span t-if="line.product_id.l10n_in_hsn_code" t-field="line.product_id.l10n_in_hsn_code"/>
+            </td>
+                                            <td class="text-end">
+                                                <span t-field="line.quantity"/>
+                                                <span t-field="line.product_uom_id" groups="uom.group_uom"/>
+                                            </td>
+                                            <td t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                                <span class="text-nowrap" t-field="line.price_unit"/>
+                                            </td>
+                                            <td t-if="display_discount" t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                                <span class="text-nowrap" t-field="line.discount"/>
+                                            </td>
+                                            <td t-attf-class="text-start {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                                <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_ids))" id="line_tax_ids"/>
+                                            </td>
+                                            <td class="text-end o_price_total">
+                                                <span class="text-nowrap" t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                                <span class="text-nowrap" t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                                            </td>
+                                        </t>
+
+        </xpath>
+        <xpath expr="//div[@name='address_not_same_as_shipping']/t" position="replace">
+
+                            <t t-set="address">
+                                 <strong>Buyer(Bill To):  </strong>
+                                <address class="mb-0" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                                <div t-if="o.partner_id.vat">
+                                    <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                                    <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/>
+                                </div>
+                            </t>
+
+        </xpath>
+
+          <xpath expr="//div[@name='address_same_as_shipping']/t" position="before">
+
+            <strong>Buyer(Bill To)  and   Consignee(Ship To): </strong>
+
+        </xpath>
+
+         <xpath expr="//div[@class='mt-5']" position="after">
+
+                 <div>
+    <div>
+
+            <h5 style="text-decoration: underline;page-break-before:auto">Declaration  :  </h5>
+        <p>We Declare that this invoice shows the actual price of the goods Described and that all particulars are true and Correct </p>
+    </div>
+    <div style="width:400px;height:100px; margin-left:595px;border-width:2px;border-style:solid;padding-left:5px ">
+        <strong>For Ramaera Industries Limited --Hazipur </strong><br/>
+        <p style="margin-top:50px">Authorised Signatory</p>
+    </div>
+
+             </div>
+
+
+
+
+        </xpath>
+
+        <xpath expr="//div[@id='informations']/div[1]/p" position="replace">
+             <p class="m-0" t-field="o.invoice_date"  widget="date" t-options="{'format': 'dd/MM/yyyy'}"/>
+
+        </xpath>
+           <xpath expr="//div[@id='informations']/div[2]/p" position="replace">
+             <p class="m-0" t-field="o.invoice_date_due"  widget="date" t-options="{'format': 'dd/MM/yyyy'}"/>
+
+        </xpath>
+
+
+
+
+
+    </template>
+
+</odoo>

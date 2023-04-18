@@ -63,23 +63,9 @@
 
         </xpath>
 
-<!--        <xpath expr="//table[1]/thead/tr[1]/th[1]" position="before">-->
-<!--            <th class="text-left">Sl. No.</th>-->
-<!--        </xpath>-->
-<!--        <xpath expr="//table[1]/tbody/t[2]/tr[1]/t[1]/td[1]" position="before">-->
-<!--            <td class="text-left">-->
-<!--                <span t-field="line.sl_no"/>-->
-<!--            </td>-->
-<!--        </xpath>-->
-
-
-
         <xpath expr="//t/div[hasclass('page')]/table/tbody/t[2]/tr" position="replace">
             <tr  t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
                 <t t-if="not line.display_type">
-<!--                    <td class="text-left">-->
-<!--                <span t-field="line.sl_no"/>-->
-<!--            </td>-->
                     <td id="productid">
                         <span t-field="line.product_id"/>
                     </td>
@@ -88,7 +74,7 @@
                     </td>
 
 
-
+<!---->
                     <td name="td_taxes">
                         <span t-esc="', '.join(map(lambda x: x.name, line.taxes_id))"/>
                     </td>
