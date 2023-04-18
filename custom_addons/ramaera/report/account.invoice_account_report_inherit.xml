@@ -64,7 +64,7 @@
 
         </xpath>
 
-          <xpath expr="//div[@name='address_same_as_shipping']/t" position="before">
+          <xpath expr="//div[@name='address_same_as_shipping']/t" position="after">
 
             <strong>Buyer(Bill To)  and   Consignee(Ship To): </strong>
 
