@@ -82,7 +82,6 @@
         <strong>For Ramaera Industries Limited --Hazipur </strong><br/>
         <p style="margin-top:50px">Authorised Signatory</p>
     </div>
-
              </div>
 
 
@@ -99,7 +98,56 @@
 
         </xpath>
 
+  <xpath expr="//div[@class='page']" position="before">
+          <table class="table table-sm o_main_table table-borderless" name="invoice_line_table">
+           <thead>
+                                <tr>
+                                    <th t-if="o.x_delivery_note" name="th_product" class="text-start"><span>Delivery Note</span></th>
+                                    <th t-if="o.x_mode_of_payment" name="th_product" class="text-start"><span>Mode of Payment</span></th>
+                                    <th t-if="o.x_other_references" name="th_description" class="text-start"><span>Other Refrences</span></th>
+                                    <th t-if="o.x_buyer_order_no" name="th_product" class="text-start"><span>Buyer's Order No.</span></th>
+                                    <th t-if="o.x_buyer_order_date" name="th_description" class="text-start"><span>Buyer's Order Date</span></th>
+                                    <th t-if="o.x_dispatch_doc_no" name="th_description" class="text-start"><span>Dispatch Doc No.</span></th>
+                                    <th t-if="o.x_delivery_note_date" name="th_quantity" class="text-end"><span>Delivery Note Date</span></th>
+                                    <th t-if="o.x_dispatch_through" name="th_quantity" class="text-end"><span>Dispatched Through</span></th>
+                                     <th t-if="o.x_destination" name="th_quantity" class="text-end"><span>Destination</span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td t-if="o.x_delivery_note">
+                                      <span t-field="o.x_delivery_note"/>
+                                    </td>
+                                    <td t-if="o.x_mode_of_payment">
+                                      <span t-field="o.x_mode_of_payment"/>
+                                    </td>
+                                    <td t-if="o.x_other_references">
+                                      <span t-field="o.x_other_references"/>
+                                    </td>
+                                    <td t-if="o.x_buyer_order_no">
+                                      <span t-field="o.x_buyer_order_no"/>
+                                    </td>
+                                    <td t-if="o.x_buyer_order_date">
+                                      <span t-field="o.x_buyer_order_date"/>
+                                    </td>
+                                    <td t-if="o.x_dispatch_doc_no">
+                                      <span t-field="o.x_dispatch_doc_no"/>
+                                    </td>
+                                    <td t-if="o.x_delivery_note_date">
+                                      <span t-field="o.x_delivery_note_date"/>
+                                    </td>
+                                    <td t-if="o.x_dispatch_through">
+                                      <span t-field="o.x_dispatch_through"/>
+                                    </td>
+                                    <td t-if="o.x_destination">
+                                      <span t-field="o.x_destination"/>
+                                    </td>
 
+                                  </tr>
+                                </tbody>
+                                </table>
+
+        </xpath>
 
 
 
